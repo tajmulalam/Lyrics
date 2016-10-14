@@ -1,0 +1,40 @@
+﻿@model Lyrics.Models.LyricsCategoryTable
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+    
+}
+
+
+<div class="main">
+    <div class="hipsum">
+
+
+        <div class="jumbotron">
+            @using (Html.BeginForm("Edit", "LyricsCategory", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    @Html.HiddenFor(model => model.category_id)
+                    @Html.ValidationMessageFor(model => model.category_id)
+                    <legend class="text-justify">Edit </legend>
+                    <div class="form-group">
+                        <label for="Title" class="col-lg-2 control-label">Category Name</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(model => model.category_name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.category_name)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>

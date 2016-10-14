@@ -1,0 +1,42 @@
+﻿@model Lyrics.Models.LyricsCategoryTable
+
+@{
+    ViewBag.Title = "Create Sub Category";
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+}
+
+<div class="main">
+    <div class="hipsum">
+
+
+        <div class="jumbotron">
+            <div class="btn-group  pull-right">
+
+                <a href="/LyricsCategory/Index" class="btn btn-sm btn-success ">Category List</a>`
+                <a href="/Lyrics/CreateLyrics" class="btn btn-sm btn-warning">Create New Lyric</a>`
+                <a href="/LyricsCategory/SubCategoryList" class="btn btn-sm btn-primary">Sub Category List</a>`
+
+            </div>
+            <br />
+            @using (Html.BeginForm("AddSubCategory", "LyricsCategory", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+
+                <fieldset>
+                    <legend>Lyrics Sub Category </legend>
+                    @Html.Hidden("category_id",Model.category_id)
+                    <div class="form-group">
+                        <label for="Title" class="col-lg-4 control-label">Sub-Category Name</label>
+                        <div class="col-lg-8">
+                            @Html.TextBox("sub_category_name", "", new { @class = "form-control", @placeholder = "Sub-category name", @required = "required" })
+                            <br />
+                            <button type="submit" class="btn btn-primary">Create</button>
+
+                         </div>
+                    </div>
+                   
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>

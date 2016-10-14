@@ -1,0 +1,166 @@
+﻿@model Lyrics.ViewModel.LyricsViewModel
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+}
+
+@section scripts{
+
+
+
+    <script>
+        $(LoadSubCategory($('#cat_ID').val()));
+        function LoadSubCategory(cat_ID) {
+
+            $.get("/Lyrics/GetSubCategoryByCategoryID/" + cat_ID, function (data) {
+                $("#subcategory").html("");
+                if (data.length < 1) {
+                    $("#subcat").hide();
+                }
+                else {
+                    $("#subcat").show();
+                }
+                for (var i in data) {
+
+                    $("#subcategory").append("<option value=" + data[i].sub_category_id + ">" + data[i].sub_category_name + "</option>");
+                }
+
+            });
+        }
+    </script>
+
+}
+<!-- Content -->
+<div class="main">
+    <div class="hipsum">
+
+
+        <div class="jumbotron">
+            <a href="/Lyrics/LyricsList" class="btn btn-sm btn-warning pull-right">Lyrics List</a>
+
+            @using (Html.BeginForm("CreateLyrics", "Lyrics", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+            {
+                <fieldset>
+                    <legend>Crate New Lyric</legend>
+                    <div class="form-group">
+                        <label for="Category" class="col-lg-2 control-label">Category</label>
+                        <div class="col-lg-10">
+                            <select name="category_id" class="form-control" id="cat_ID" onchange="LoadSubCategory($('#cat_ID').val());">
+                                @foreach (var item in Model.lyricsCategory)
+                                {
+                                    <option value="@item.category_id">@item.category_name</option>
+
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group" id="subcat">
+                        <label for="Title" class="col-lg-2 control-label">Sub Category</label>
+                        <div class="col-lg-10">
+                            <select name="sub_category_id" class="form-control" id="subcategory"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Title" class="col-lg-2 control-label">Title</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("lyric_title", "", new { @class = "form-control", @placeholder = "Title", @required = "required" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Artist" class="col-lg-2 control-label">Artist</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("artist", "", new { @class = "form-control", @placeholder = "Artist", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Additional" class="col-lg-2 control-label">Additional Vocals</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("Additional_vocals", "", new { @class = "form-control", @placeholder = "Additional Vocals", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Composed" class="col-lg-2 control-label">Composed By</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("composed_by", "", new { @class = "form-control", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Produced" class="col-lg-2 control-label">Produced By</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("produced_by", "", new { @class = "form-control", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="LyricsBy" class="col-lg-2 control-label">Lyrics By</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("lyrics_by", "", new { @class = "form-control", @required = "required" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Singers" class="col-lg-2 control-label">Singers</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("singers", "", new { @class = "form-control", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lyrics" class="col-lg-2 control-label"> Main lyric</label>
+                        <div class="col-lg-10">
+                            @Html.TextArea("main_lyrics", "", new { @class = "form-control", @rows = "9", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="information" class="col-lg-2 control-label">Information</label>
+                        <div class="col-lg-10">
+                            @Html.TextArea("information", "", new { @class = "form-control", @rows = "9", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="audio_link" class="col-lg-2 control-label">Audio link</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("audio_link", "", new { @class = "form-control", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="video_link" class="col-lg-2 control-label">Video link</label>
+                        <div class="col-lg-10">
+                            @Html.TextBox("video_link", "", new { @class = "form-control", @required = "required" })
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="video_link" class="col-lg-2 control-label">Select Photo</label>
+                        <div class="col-lg-10">
+                            <input type="file" class="form-control" name="files" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+
+    </div>
+</div>

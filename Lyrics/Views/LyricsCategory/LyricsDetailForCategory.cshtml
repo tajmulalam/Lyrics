@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Lyrics.Models.lyricsTable>
+
+
+<div class="row">
+    @foreach (var lyrics in Model)
+    {
+        <div class="col-lg-4">
+            <div class="bs-component">
+                <h2>@lyrics.lyric_title</h2>
+                @if (lyrics.main_lyrics.Length > 30)
+                {
+                    <article>@lyrics.main_lyrics.Substring(0, 30)</article>
+
+                }
+                else
+                {
+                    <article>@lyrics.main_lyrics</article>
+
+                }
+                <a href="#" class="btn btn-primary btn-sm "  >Read More...</a>
+            </div>
+
+        </div>
+    }
+
+
+</div>

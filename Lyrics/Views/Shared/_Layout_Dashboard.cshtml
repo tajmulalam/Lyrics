@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="header">
+        <a href="#" id="menu-action">
+            <i class="fa fa-bars"></i>
+            <span>Close</span>
+            
+        </a>
+        <div class="logo">
+          
+            Lyrics
+            <a href="/Home/Logout" class="btn btn-sm btn-danger glyphicon glyphicon-log-out col-md-offset-9 "></a>
+
+        </div>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="/Lyrics/CreateLyrics"><i class="fa fa-home"></i><span>Lyrics</span></a></li>
+            <li><a href="/LyricsCategory/Create"><i class="fa fa-pencil"></i><span>Lyrics Category</span></a></li>
+            <li><a href="#"><i class="fa fa-adn"></i><span>About Us</span></a></li>
+            <li><a href="#"><i class="fa fa-facebook-official"></i><span>Contact Us</span></a></li>
+            
+        </ul>
+    </div>
+
+
+
+    <div class="container"> @RenderBody()</div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrapjs")
+    <script src="~/Scripts/panel.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

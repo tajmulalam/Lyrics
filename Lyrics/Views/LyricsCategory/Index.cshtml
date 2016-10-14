@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Lyrics.Models.LyricsCategoryTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+
+}
+
+<div class="main">
+    <div class="hipsum">
+
+
+        <div class="jumbotron">
+            <div class="btn-group  pull-right">
+
+                <a href="/LyricsCategory/Create" class="btn btn-sm btn-success ">Create New Category</a>`
+                <a href="/Lyrics/CreateLyrics" class="btn btn-sm btn-warning">Create New Lyric</a>`
+
+            </div>
+
+            <h3>Category List</h3>
+            
+
+            <table class="table table-responsive table-bordered">
+                <tr>
+
+                    <th>
+                        Category Name
+                    </th>
+                    <th>Operations</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.category_name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.category_id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.category_id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.category_id })|
+                            @Html.ActionLink("Add Sub-Category", "AddSubCategory", new { id = item.category_id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LyricsDBModelStoreContainer" CdmEntityContainer="LyricsDBEntities">
+    <EntitySetMapping Name="LyricsCategoryTable">
+      <EntityTypeMapping TypeName="LyricsDBModel.LyricsCategoryTable">
+        <MappingFragment StoreEntitySet="LyricsCategoryTable">
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LyricsSubCategoryTable">
+      <EntityTypeMapping TypeName="LyricsDBModel.LyricsSubCategoryTable">
+        <MappingFragment StoreEntitySet="LyricsSubCategoryTable">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="sub_category_name" ColumnName="sub_category_name" />
+          <ScalarProperty Name="sub_category_id" ColumnName="sub_category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lyricsTable">
+      <EntityTypeMapping TypeName="LyricsDBModel.lyricsTable">
+        <MappingFragment StoreEntitySet="lyricsTable">
+          <ScalarProperty Name="sub_category_id" ColumnName="sub_category_id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="video_link" ColumnName="video_link" />
+          <ScalarProperty Name="audio_link" ColumnName="audio_link" />
+          <ScalarProperty Name="information" ColumnName="information" />
+          <ScalarProperty Name="main_lyrics" ColumnName="main_lyrics" />
+          <ScalarProperty Name="singers" ColumnName="singers" />
+          <ScalarProperty Name="lyrics_by" ColumnName="lyrics_by" />
+          <ScalarProperty Name="produced_by" ColumnName="produced_by" />
+          <ScalarProperty Name="composed_by" ColumnName="composed_by" />
+          <ScalarProperty Name="Additional_vocals" ColumnName="Additional_vocals" />
+          <ScalarProperty Name="artist" ColumnName="artist" />
+          <ScalarProperty Name="lyric_title" ColumnName="lyric_title" />
+          <ScalarProperty Name="lyric_ID" ColumnName="lyric_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

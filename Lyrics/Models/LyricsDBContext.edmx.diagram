@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e8ed528092f49f1aa2999f467b55d64" Name="Diagram1">
+        <EntityTypeShape EntityType="LyricsDBModel.LyricsCategoryTable" Width="1.5" PointX="3.375" PointY="3.125" />
+        <EntityTypeShape EntityType="LyricsDBModel.LyricsSubCategoryTable" Width="1.5" PointX="6.25" PointY="0.875" />
+        <AssociationConnector Association="LyricsDBModel.FK_LyricsSubCategoryTable_LyricsCategoryTable" />
+        <EntityTypeShape EntityType="LyricsDBModel.lyricsTable" Width="1.5" PointX="0.625" PointY="0.75" />
+        <AssociationConnector Association="LyricsDBModel.FK_lyricsTable_LyricsCategoryTable" />
+        <AssociationConnector Association="LyricsDBModel.FK_lyricsTable_LyricsSubCategoryTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

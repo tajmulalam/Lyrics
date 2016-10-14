@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Lyrics.Models.lyricsTable>
+
+@{
+    ViewBag.Title = "LyricsList";
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+
+}
+
+<!-- Content -->
+<div class="main">
+    <div class="hipsum">
+
+
+        <div class="jumbotron">
+            <a href="/Lyrics/CreateLyrics" class="btn btn-sm btn-success pull-right">Create New Lyric</a>`
+
+            <h1>Crate New Lyric</h1>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Title</th>
+                    <th>Category Name</th>
+                    <th>Sub Category Name</th>
+                    <th>Cover Photo</th>
+                    <th>Operation</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.lyric_title</td>
+                        <td>@item.LyricsCategoryTable.category_name</td>
+                        <td>@item.LyricsSubCategoryTable.sub_category_name</td>
+                        <td><img src="~/Images/LyricsPhotos/@item.image" alt="Alternate Text" width="100" /></td>
+                        <td class="btn-group">
+                        @Html.ActionLink("Edit", "EditLyric", new { id = item.lyric_ID }, new { @class = "btn btn-sm btn-warning " })
+                        @Html.ActionLink("Delete", "EditLyric", new { id = item.lyric_ID }, new { @class = "btn btn-sm btn-danger " })
+                    </td>
+
+                </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

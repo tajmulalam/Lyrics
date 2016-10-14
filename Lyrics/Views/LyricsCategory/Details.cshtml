@@ -1,0 +1,31 @@
+﻿@model Lyrics.Models.LyricsCategoryTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Dashboard.cshtml";
+
+}
+
+        <div class="main">
+            <div class="hipsum">
+
+
+                <div class="jumbotron">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <fieldset>
+                                <legend>Details</legend>
+                               
+                                <div class="display-field">
+                                    Category Name:   @Html.DisplayFor(model => model.category_name)
+                                </div>
+                            </fieldset>
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.category_id }) |
+                                @Html.ActionLink("Back to List", "Index")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>

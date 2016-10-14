@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LyricsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LyricsDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LyricsCategoryTable" EntityType="LyricsDBModel.LyricsCategoryTable" />
+    <EntitySet Name="LyricsSubCategoryTable" EntityType="LyricsDBModel.LyricsSubCategoryTable" />
+    <AssociationSet Name="FK_LyricsSubCategoryTable_LyricsCategoryTable" Association="LyricsDBModel.FK_LyricsSubCategoryTable_LyricsCategoryTable">
+      <End Role="LyricsCategoryTable" EntitySet="LyricsCategoryTable" />
+      <End Role="LyricsSubCategoryTable" EntitySet="LyricsSubCategoryTable" />
+    </AssociationSet>
+    <EntitySet Name="lyricsTable" EntityType="LyricsDBModel.lyricsTable" />
+    <AssociationSet Name="FK_lyricsTable_LyricsCategoryTable" Association="LyricsDBModel.FK_lyricsTable_LyricsCategoryTable">
+      <End Role="LyricsCategoryTable" EntitySet="LyricsCategoryTable" />
+      <End Role="lyricsTable" EntitySet="lyricsTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_lyricsTable_LyricsSubCategoryTable" Association="LyricsDBModel.FK_lyricsTable_LyricsSubCategoryTable">
+      <End Role="LyricsSubCategoryTable" EntitySet="LyricsSubCategoryTable" />
+      <End Role="lyricsTable" EntitySet="lyricsTable" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="LyricsCategoryTable">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LyricsSubCategoryTable" Relationship="LyricsDBModel.FK_LyricsSubCategoryTable_LyricsCategoryTable" FromRole="LyricsCategoryTable" ToRole="LyricsSubCategoryTable" />
+    <NavigationProperty Name="lyricsTable" Relationship="LyricsDBModel.FK_lyricsTable_LyricsCategoryTable" FromRole="LyricsCategoryTable" ToRole="lyricsTable" />
+  </EntityType>
+  <EntityType Name="LyricsSubCategoryTable">
+    <Key>
+      <PropertyRef Name="sub_category_id" />
+    </Key>
+    <Property Name="sub_category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sub_category_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="category_id" Type="Int32" />
+    <NavigationProperty Name="LyricsCategoryTable" Relationship="LyricsDBModel.FK_LyricsSubCategoryTable_LyricsCategoryTable" FromRole="LyricsSubCategoryTable" ToRole="LyricsCategoryTable" />
+    <NavigationProperty Name="lyricsTable" Relationship="LyricsDBModel.FK_lyricsTable_LyricsSubCategoryTable" FromRole="LyricsSubCategoryTable" ToRole="lyricsTable" />
+  </EntityType>
+  <Association Name="FK_LyricsSubCategoryTable_LyricsCategoryTable">
+    <End Type="LyricsDBModel.LyricsCategoryTable" Role="LyricsCategoryTable" Multiplicity="0..1" />
+    <End Type="LyricsDBModel.LyricsSubCategoryTable" Role="LyricsSubCategoryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LyricsCategoryTable">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="LyricsSubCategoryTable">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="lyricsTable">
+    <Key>
+      <PropertyRef Name="lyric_ID" />
+    </Key>
+    <Property Name="lyric_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lyric_title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="artist" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Additional_vocals" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="composed_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="produced_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lyrics_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="singers" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="main_lyrics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="information" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="audio_link" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="video_link" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="sub_category_id" Type="Int32" />
+    <NavigationProperty Name="LyricsCategoryTable" Relationship="LyricsDBModel.FK_lyricsTable_LyricsCategoryTable" FromRole="lyricsTable" ToRole="LyricsCategoryTable" />
+    <NavigationProperty Name="LyricsSubCategoryTable" Relationship="LyricsDBModel.FK_lyricsTable_LyricsSubCategoryTable" FromRole="lyricsTable" ToRole="LyricsSubCategoryTable" />
+  </EntityType>
+  <Association Name="FK_lyricsTable_LyricsCategoryTable">
+    <End Type="LyricsDBModel.LyricsCategoryTable" Role="LyricsCategoryTable" Multiplicity="0..1" />
+    <End Type="LyricsDBModel.lyricsTable" Role="lyricsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LyricsCategoryTable">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="lyricsTable">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_lyricsTable_LyricsSubCategoryTable">
+    <End Type="LyricsDBModel.LyricsSubCategoryTable" Role="LyricsSubCategoryTable" Multiplicity="0..1" />
+    <End Type="LyricsDBModel.lyricsTable" Role="lyricsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LyricsSubCategoryTable">
+        <PropertyRef Name="sub_category_id" />
+      </Principal>
+      <Dependent Role="lyricsTable">
+        <PropertyRef Name="sub_category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
